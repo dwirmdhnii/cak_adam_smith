@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laporan Keuangan Es Teh Cak Adam Smith</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header-toko">
+      <img src="esteh1.png" alt="Logo Es Teh Cak Adam Smith" class="logo-toko">
+      <h1>LAPORAN KEUANGAN ES TEH CAK ADAM SMITH</h1>
+      <p class="tanggal" id="tanggalHariIni"></p>
+    </header>
+
+    <!-- UANG TOTAL -->
+    <section class="card">
+      <h2>UANG TOTAL</h2>
+      <label>Total Uang di Kas</label>
+      <input type="number" id="uangTotal" placeholder="0" min="0" step="any">
+    </section>
+
+    <!-- PENGELUARAN -->
+    <section class="card">
+      <h2>PENGELUARAN</h2>
+      <div id="listPengeluaran"></div>
+      <button type="button" class="btn-tambah" id="btnTambahPengeluaran">Tambah Pengeluaran</button>
+      <p class="subtotal">Subtotal Pengeluaran: <strong id="subtotalPengeluaran">Rp 0</strong></p>
+    </section>
+
+    <!-- PEMASUKAN -->
+    <section class="card">
+      <h2>PEMASUKAN</h2>
+      <label>Omzet Toko</label>
+      <input type="number" id="omzet" placeholder="0" min="0" step="any">
+    </section>
+
+    <!-- KEMBALIAN -->
+    <section class="card">
+      <h2>KEMBALIAN</h2>
+      <div class="row">
+        <div class="col">
+          <label>KERTAS</label>
+          <input type="number" id="kembalianKertas" placeholder="0" min="0" step="any">
+        </div>
+        <div class="col">
+          <label>KOIN</label>
+          <input type="number" id="kembalianKoin" placeholder="0" min="0" step="any">
+        </div>
+      </div>
+
+      <label style="margin-top:12px;">Tukar Kertas ke Koin</label>
+      <input type="number" id="tukarKertasKoin" placeholder="0" min="0" step="any">
+    </section>
+
+    <!-- TAHAPAN PERHITUNGAN -->
+    <section class="card tahapan-card">
+      <h2>TAHAPAN PERHITUNGAN KAS</h2>
+      <ol class="tahapan">
+        <li>
+          <span class="tahap-label">Uang di Kas</span>
+          <span class="tahap-nilai" id="tahap1">Rp 0</span>
+        </li>
+        <li>
+          <span class="tahap-label">Semua Pengeluaran</span>
+          <span class="tahap-nilai minus" id="tahap2minus">Rp 0</span>
+        </li>
+        <li class="tahap-stop">
+          <span class="tahap-label">Uang Sementara </span>
+          <span class="tahap-nilai" id="tahapSementara">Rp 0</span>
+        </li>
+        <li>
+          <span class="tahap-label">Omzet Toko</span>
+          <span class="tahap-nilai plus" id="tahapOmzet">Rp 0</span>
+        </li>
+        <li>
+          <span class="tahap-label">Uang Setelah Omzet</span>
+          <span class="tahap-nilai" id="tahapSetelahOmzet">Rp 0</span>
+        </li>
+        <li>
+          <span class="tahap-label">Kembalian</span>
+          <span class="tahap-nilai minus" id="tahapKertas">Rp 0</span>
+        </li>
+        <li>
+          <span class="tahap-label">Tukar Kertas ke Koin</span>
+          <span class="tahap-nilai minus" id="tahapTukar">Rp 0</span>
+        </li>
+        <li class="tahap-final">
+          <span class="tahap-label">Uang di Kas Hari Ini</span>
+          <span class="tahap-nilai" id="tahapFinal">Rp 0</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- BUKTI FOTO -->
+    <section class="card">
+      <h2>BUKTI FOTO UANG</h2>
+      <label>Upload Foto Uang Hari Ini (Wajib)</label>
+      <input type="file" id="inputFoto" accept="image/*" capture="environment" style="margin-bottom: 12px; padding: 8px; border: 1.5px solid #cbd5e1; border-radius: 8px; width: 100%;">
+      
+      <!-- Wadah untuk tombol Preview & Hapus (disembunyikan secara default) -->
+      <div id="wrapAksiFoto" style="display: none; gap: 8px; margin-top: 4px;">
+        <button type="button" id="btnPreview" class="btn-tambah" style="flex: 1; background: #f0fdf4; border-color: #86efac; color: #166534;">Lihat Foto</button>
+        <button type="button" id="btnHapusFoto" class="btn-tambah" style="flex: 1; background: #fef2f2; border-color: #fca5a5; color: #dc2626;">Hapus Foto</button>
+      </div>
+    </section>
+
+    <div class="aksi">
+      <button type="button" id="btnCetak" class="btn-cetak" disabled style="opacity: 0.5; cursor: not-allowed;">Cetak Laporan</button>
+      <button type="button" id="btnReset" class="btn-reset">Reset Data</button>
+    </div>
+  </div>
+
+  <!-- Area laporan untuk cetak -->
+  <div id="areaCetak" class="area-cetak"></div>
+
+  <!-- Modal Preview Foto -->
+  <div id="modalFoto" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="imgPreview">
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
